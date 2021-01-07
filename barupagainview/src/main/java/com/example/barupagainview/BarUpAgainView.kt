@@ -42,7 +42,7 @@ fun Canvas.drawBarUpAgain(scale : Float, w : Float, h : Float, paint : Paint) {
     translate(w / 2, h)
     for (j in 0..1) {
         save()
-        translate(0f, -barH / 2 + barH * j)
+        translate(-barH / 2 + barH * j, 0f)
         drawLine(0f, 0f, 0f, -(lineH + barH) * sf1, paint)
         restore()
     }
