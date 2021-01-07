@@ -1,0 +1,3 @@
+include ':barupagainview'
+include ':app'
+rootProject.name = "LinkedBarUpAgainView"
