@@ -24,6 +24,7 @@ val colors : Array<Int> = arrayOf(
 ).map {
     Color.parseColor(it)
 }.toTypedArray()
+val backColor : Int = Color.parseColor("#BDBDBD")
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -191,6 +192,29 @@ class BarUpAgainView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : BarUpAgainView) {
+
+        private val animator : Animator = Animator(view)
+        private val bua : BarUpAgain = BarUpAgain(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bua.draw(canvas, paint)
+            animator.animate {
+                bua.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bua.startUpdating {
+                animator.start()
+            }
         }
     }
 }
