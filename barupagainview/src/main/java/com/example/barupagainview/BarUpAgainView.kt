@@ -219,4 +219,13 @@ class BarUpAgainView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BarUpAgainView {
+            val view : BarUpAgainView = BarUpAgainView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
